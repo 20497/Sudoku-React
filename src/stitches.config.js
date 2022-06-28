@@ -9,14 +9,14 @@ export const stitchesGlobalSettings = {
   font: "Ubuntu, sans-serif",
 };
 
-export const { styled } = createStitches({
+export const { styled, keyframes } = createStitches({
   theme: {
     colors: stitchesGlobalSettings.colors,
     fontSizes: {
-      s: ".75rem",
-      m: "1.5rem",
-      xl: "2rem",
-      big: "4rem",
+      s: "1rem",
+      m: "1.6rem",
+      xl: "2.5rem",
+      xxl: "4rem",
     },
   },
 });

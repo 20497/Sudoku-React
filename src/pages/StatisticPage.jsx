@@ -1,7 +1,10 @@
-import React from 'react'
+import React from "react";
+import PageLayout from "../components/PageLayout";
 
 export default function StatisticPage() {
   return (
-    <div>StatisticPage</div>
-  )
+    <PageLayout>
+      <div>StatisticPage</div>
+    </PageLayout>
+  );
 }
