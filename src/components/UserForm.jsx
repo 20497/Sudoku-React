@@ -17,7 +17,6 @@ export default function UserForm() {
   const { gameDispatch } = React.useContext(GameContext);
 
   const addUserToGame = ({ playerName }) => {
-    console.log(playerName);
     gameDispatch({ type: "ADD_PLAYER", playerName: playerName });
     navigate(appRoutes.GAME);
   };
