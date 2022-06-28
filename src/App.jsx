@@ -1,35 +1,28 @@
 import React from "react";
-
-import { globalCss } from "@stitches/react";
-
-import { stitchesGlobalSettings } from "./stitches.config";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { globalStyles } from "./globalStyle";
+import { appRoutes } from "./appRoutes";
+import HomePage from "./pages/HomePage";
+import GamePage from "./pages/GamePage";
+import StatisticPage from "./pages/StatisticPage";
 
 export default function App() {
-  const colors = stitchesGlobalSettings.colors;
-
-  const globalStyles = globalCss({
-    "*": { boxSizing: "border-box", color: colors.black },
-    body: {
-      margin: "0",
-      background: colors.white,
-      fontFamily: stitchesGlobalSettings.font,
-    },
-    ul: { margin: "0", padding: "0", listStyleType: "none" },
-    a: {
-      textDecoration: "none",
-      display: "block",
-      color: "inherit",
-    },
-  });
-
-  // Load Global Style
   React.useEffect(() => {
+    // Load Global Style
     globalStyles();
-  }, [globalStyles]);
+  }, []);
 
   return (
-    <div className="App">
-      
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path={appRoutes.HOME} element={<HomePage />} />
+        <Route path={appRoutes.GAME} element={<GamePage />} />
+        <Route path={appRoutes.STATISTICS} element={<StatisticPage />} />
+        <Route
+          path={appRoutes.NOT_FOUND}
+          element={<Navigate to={appRoutes.HOME} replace={true} />}
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
