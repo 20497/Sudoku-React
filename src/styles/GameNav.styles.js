@@ -6,10 +6,15 @@ const underline = keyframes({
 });
 
 export const NavMenu = styled("nav", {
+  width: "100%",
   alignSelf: "end",
 });
 
-export const MenuList = styled("ul", {});
+export const MenuList = styled("ul", {
+  width: "100%",
+  display: "flex",
+  justifyContent: "space-between",
+});
 
 export const MenuListItem = styled("li", {
   "& a": {
@@ -26,4 +31,11 @@ export const MenuListItem = styled("li", {
     top: "100%",
     animation: `${underline} 200ms forwards`,
   },
+});
+
+export const Player = styled("span", {
+  fontSize: "$s",
+  fontWeight: "bold",
+  fontStyle: "italic",
+  textTransform: "uppercase",
 });

@@ -1,5 +1,5 @@
 export const gameInitState = {
-  user: "",
+  playerName: "",
   dificultLevel: null,
   statistics: {
     //Ex { dificultLevel: "easy", points: 324 }

@@ -5,6 +5,7 @@ export const stitchesGlobalSettings = {
     black: "#2D2D2D",
     gray: "#C4C4C4",
     white: "#E5E5E5",
+    red: "#E74E4E",
   },
   font: "Ubuntu, sans-serif",
 };

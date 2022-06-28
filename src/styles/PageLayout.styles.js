@@ -17,4 +17,5 @@ export const Main = styled("main", {
   padding: "2% 10% 5% 10%",
   display: "flex",
   flexDirection: "column",
+  alignItems: "center",
 });
