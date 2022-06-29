@@ -19,7 +19,7 @@ export default function GameNav() {
           <Player>PLAYER: {gameState.playerName}</Player>
         </MenuListItem>
         <MenuListItem>
-          <Link to={appRoutes.STATISTICS}>Statystyki</Link>
+          <Link to={appRoutes.STATISTICS}>Statistics</Link>
         </MenuListItem>
       </MenuList>
     </NavMenu>

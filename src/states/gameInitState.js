@@ -4,7 +4,8 @@ export const gameInitState = {
   statistics: {
     //Ex { dificultLevel: "easy", points: 324 }
   },
-  field: [],
+  board: [],
+  solution: [],
   moveSnapshot: null, // last filled input
   lifebelt: {
     backMove: true,

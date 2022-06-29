@@ -1,6 +1,6 @@
-import { styled } from "../stitches.config";
+import { styled } from "../../stitches.config";
 
-export const GameBoxInput = styled("input", {
+export const SudokuCellInput = styled("input", {
   padding: "1rem",
   width: "100%",
   height: "100%",
