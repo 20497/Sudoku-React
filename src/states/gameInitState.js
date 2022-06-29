@@ -1,11 +1,11 @@
 export const gameInitState = {
   playerName: "",
-  dificultLevel: null,
+  dificultLevel: "",
   statistics: {
     //Ex { dificultLevel: "easy", points: 324 }
   },
   board: [],
-  solution: [],
+  solution: "",
   moveSnapshot: null, // last filled input
   lifebelt: {
     backMove: true,

@@ -1,4 +1,5 @@
 import { styled, keyframes } from "../stitches.config";
+import { GameDataSpan } from "./templates/GameDataSpan.styles";
 
 const underline = keyframes({
   "0%": { width: "0%" },
@@ -33,9 +34,11 @@ export const MenuListItem = styled("li", {
   },
 });
 
-export const Player = styled("span", {
-  fontSize: "$s",
-  fontWeight: "bold",
-  fontStyle: "italic",
-  textTransform: "uppercase",
+export const MenuListItemWrapperList = styled("ul", {
+  display: "flex",
+  flexDirection: "column",
 });
+
+export const Player = GameDataSpan;
+
+export const DificultLevel = GameDataSpan;

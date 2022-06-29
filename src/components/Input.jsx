@@ -2,7 +2,7 @@ import {
   Wrapper,
   Label,
   Textfield,
-  ValidationMessage,
+  ValidationInputMessage,
 } from "../styles/Input.styles";
 
 export default function Input({ label, register, errors }) {
@@ -10,7 +10,7 @@ export default function Input({ label, register, errors }) {
     <Wrapper>
       <Label>{label}</Label>
       <Textfield {...register} />
-      {errors && <ValidationMessage>Pole Wymagane</ValidationMessage>}
+      {errors && <ValidationInputMessage>Pole Wymagane</ValidationInputMessage>}
     </Wrapper>
   );
 }

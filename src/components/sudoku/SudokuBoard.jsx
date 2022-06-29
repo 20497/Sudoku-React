@@ -1,30 +1,68 @@
 import React from "react";
 import { SudokuFieldGrid } from "../../styles/sudoku/SudokuBoard.styles";
 import { GameContext } from "../../context/GameContext";
-import useSudoku from "../../hooks/useSudoku";
-import Loading from "../Loading";
 import SudokuBlock from "./SudokuBlock";
 
 export default function SudokuBoard() {
-  const [sudokuBoard, sudokuSolution] = useSudoku();
-
   const { gameState, gameDispatch } = React.useContext(GameContext);
 
-  const handleGameBoardAndSolution = React.useCallback(() => {
-    gameDispatch({
-      type: "HANDLE_SUDOKU_BOARD",
-      board: sudokuBoard,
-      solution: sudokuSolution,
-    });
-  }, [gameDispatch, sudokuBoard, sudokuSolution]);
+  const [board, setBoard] = React.useState();
+
+  const handleGameBoardAndSolution = React.useCallback(
+    (board, solution) => {
+      gameDispatch({
+        type: "HANDLE_SUDOKU_BOARD",
+        board: board,
+        solution: solution,
+      });
+    },
+    [gameDispatch]
+  );
 
   React.useEffect(() => {
-    handleGameBoardAndSolution();
-  }, [handleGameBoardAndSolution]);
+    fetch(
+      `https://sugoku.herokuapp.com/board?difficulty=${gameState.dificultLevel}`,
+      {
+        method: "GET",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => setBoard(data.board));
+  }, [gameState.dificultLevel]);
+
+  React.useEffect(() => {
+    const encodeBoard = (board) =>
+      board.reduce(
+        (result, row, i) =>
+          result +
+          `%5B${encodeURIComponent(row)}%5D${
+            i === board.length - 1 ? "" : "%2C"
+          }`,
+        ""
+      );
+
+    const encodeParams = (params) =>
+      Object.keys(params)
+        .map((key) => `${key}=%5B${encodeBoard(params[key])}%5D`)
+        .join("&");
+
+    if (board !== undefined) {
+      fetch("https://sugoku.herokuapp.com/solve", {
+        method: "POST",
+        body: encodeParams({ board: board }),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      })
+        .then((response) => response.json())
+        .then((data) => handleGameBoardAndSolution(board, data));
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [board]);
 
   return (
     <>
-      {gameState.board !== undefined ? (
+      {gameState.board !== undefined && (
         <SudokuFieldGrid
           css={{
             marginTop: "5%",
@@ -40,8 +78,6 @@ export default function SudokuBoard() {
             />
           ))}
         </SudokuFieldGrid>
-      ) : (
-        <Loading />
       )}
     </>
   );

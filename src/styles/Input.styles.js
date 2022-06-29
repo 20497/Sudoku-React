@@ -1,6 +1,8 @@
 import { styled } from "../stitches.config";
+import { ValidationMessage } from "./templates/ValidationMessage.styles";
 
 export const Wrapper = styled("label", {
+  width: "100%",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -25,6 +27,4 @@ export const Textfield = styled("input", {
   },
 });
 
-export const ValidationMessage = styled("p", {
-  color: "$red",
-});
+export const ValidationInputMessage = ValidationMessage;
