@@ -20,7 +20,7 @@ export const SudokuValidationMessage = ValidationMessage;
 
 export const SudokuFieldGrid = SudokuGridLayout;
 
-export const SudokuSolveButton = styled("input", {
+export const SudokuSolveButton = styled("button", {
   appearance: "none",
   border: "none",
   padding: "1%",

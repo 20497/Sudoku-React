@@ -2,17 +2,17 @@ import React from "react";
 import {
   SudokuWrapper,
   SudokuValidationMessage,
-  SudokuFieldGrid,
   SudokuSolveButton,
 } from "../../styles/sudoku/SudokuBoard.styles";
 import { GameContext } from "../../context/GameContext";
-import SudokuBlock from "./SudokuBlock";
+import GameGrid from "./GameGrid";
 import { useForm } from "react-hook-form";
 
 export default function SudokuBoard() {
   const { gameState, gameDispatch } = React.useContext(GameContext);
 
   const [board, SetBoard] = React.useState();
+  const [showAnswer, setShowAnswer] = React.useState(false);
 
   const handleGameBoardAndSolution = React.useCallback(
     (board, solution) => {
@@ -115,24 +115,9 @@ export default function SudokuBoard() {
       )}
       {gameState.board !== undefined && (
         <SudokuWrapper onSubmit={handleSubmit(onSubmit)}>
-          <SudokuFieldGrid
-            css={{
-              marginTop: "5%",
-              width: "700px",
-              height: "700px",
-            }}
-          >
-            {gameState.board.map((block, index) => (
-              <SudokuBlock
-                key={`block-${index}`}
-                block={block}
-                blockIndex={index}
-                register={register}
-                errors={errors}
-              />
-            ))}
-          </SudokuFieldGrid>
-          <SudokuSolveButton type="submit" value="Solve" />
+          <GameGrid board={showAnswer ? gameState.solution.solution : gameState.board} register={register} errors={errors} />
+          <SudokuSolveButton type="submit" role="button">Solve</SudokuSolveButton>
+          <SudokuSolveButton type="button" role="button" onClick={() => { setShowAnswer(!showAnswer)}}>{showAnswer ? "Hide answer" : "Show answer"}</SudokuSolveButton>
         </SudokuWrapper>
       )}
     </>

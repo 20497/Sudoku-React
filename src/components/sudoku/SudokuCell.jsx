@@ -3,26 +3,30 @@ import React from "react";
 import { SudokuCellInput } from "../../styles/sudoku/SudokuCell.styles";
 
 export default function SudokuCell({ cell, register, cellFormIndex, errors }) {
-  const cellValue = cell !== 0 ? cell : "";
+  const isStaticCell = cell !== 0
+  const cellValue = isStaticCell ? cell : "";
 
   const [inputValue, setInputValue] = React.useState(cellValue);
 
-  const isCellvalid = errors[cellFormIndex] && inputValue === "";
+  const isCellValid = !errors[cellFormIndex] || inputValue === "";
 
-  return (
+  return isStaticCell ? <SudokuCellInput
+      value={cell}
+      readOnly
+    /> 
+    : 
     <SudokuCellInput
       css={{
-        background: isCellvalid ? "$red" : "inherit",
+        background: isCellValid ? "inherit" : "$red",
       }}
       type="text"
       pattern="[1-9]*"
       maxLength={1}
       value={inputValue}
       {...register}
-      readOnly={cell !== 0 ? true : false}
       onChange={(event) =>
-        setInputValue(event.target.validity.valid ? event.target.value : "")
+        setInputValue(event.target.validity.valid ? event.target.value : 0)
       }
     />
-  );
+  ;
 }
