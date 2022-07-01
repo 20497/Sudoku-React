@@ -19,6 +19,7 @@ export default function SudokuCell({ cell, register, cellFormIndex, errors }) {
       maxLength={1}
       value={inputValue}
       {...register}
+      readOnly={cell !== 0 ? true : false}
       onChange={(event) =>
         setInputValue(event.target.validity.valid ? event.target.value : "")
       }
